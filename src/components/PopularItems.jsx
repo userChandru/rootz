@@ -19,7 +19,7 @@ export function PopularItems() {
     {
       id: 1,
       name: "Organic Bananas",
-      price: 1.99,
+      price: 20,
       image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=300&auto=format&fit=crop",
       category: "fruits",
       unit: "bunch",
@@ -28,7 +28,7 @@ export function PopularItems() {
     {
       id: 2,
       name: "Fresh Milk",
-      price: 2.49,
+      price: 40,
       image: "https://images.unsplash.com/photo-1563636619-e9143da7973b?q=80&w=300&auto=format&fit=crop",
       category: "dairy",
       unit: "1 liter"
@@ -36,8 +36,8 @@ export function PopularItems() {
     {
       id: 3,
       name: "Whole Wheat Bread",
-      price: 3.29,
-      originalPrice: 3.99,
+      price: 35,
+      originalPrice: 45,
       image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=300&auto=format&fit=crop",
       category: "bakery",
       unit: "loaf",
@@ -46,7 +46,7 @@ export function PopularItems() {
     {
       id: 4,
       name: "Avocado",
-      price: 1.49,
+      price: 15,
       image: "https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=300&auto=format&fit=crop",
       category: "fruits",
       unit: "each"
@@ -54,7 +54,7 @@ export function PopularItems() {
     {
       id: 5,
       name: "Free-Range Eggs",
-      price: 4.99,
+      price: 70,
       image: "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?q=80&w=300&auto=format&fit=crop",
       category: "dairy",
       unit: "dozen"
@@ -62,8 +62,8 @@ export function PopularItems() {
     {
       id: 6,
       name: "Frozen Pizza",
-      price: 5.99,
-      originalPrice: 7.49,
+      price: 130,
+      originalPrice: 160,
       image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=300&auto=format&fit=crop",
       category: "frozen",
       unit: "each",
@@ -72,19 +72,20 @@ export function PopularItems() {
     {
       id: 7,
       name: "Potato Chips",
-      price: 2.99,
+      price: 30,
       image: "https://images.unsplash.com/photo-1566478989037-eec170784d0b?q=80&w=300&auto=format&fit=crop",
       category: "snacks",
       unit: "200g"
     },
     {
       id: 8,
-      name: "Sparkling Water",
-      price: 1.29,
-      image: "https://images.unsplash.com/photo-1606168094336-48f555bb58f8?q=80&w=300&auto=format&fit=crop",
-      category: "beverages",
-      unit: "500ml",
-      isNew: true
+      name: "Vegan Cheese",
+      price: 130,
+      originalPrice: 150,
+      image: "https://images.unsplash.com/photo-1589881133595-a3c085cb731d?q=80&w=300&auto=format&fit=crop",
+      category: "dairy",
+      unit: "200g",
+      isSale: true
     }
   ];
   
@@ -133,54 +134,62 @@ export function PopularItems() {
 
   return (
     <section className="py-6">
-      <h2 className="text-2xl font-semibold mb-6">Popular Items</h2>
+      <h2 className="text-2xl font-semibold mb-6 text-primary-600 dark:text-primary-400">Popular Items</h2>
       
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(6)].map((_, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-md p-4 animate-pulse">
-              <div className="h-48 bg-gray-200 rounded-md mb-4"></div>
-              <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+            <div key={index} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 animate-pulse">
+              <div className="h-48 bg-gray-200 dark:bg-gray-700 rounded-md mb-4"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-2"></div>
+              <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
             </div>
           ))}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105">
-              <img 
-                src={product.image} 
-                alt={product.name} 
-                className="w-full h-48 object-cover"
-              />
+            <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl border border-gray-100 dark:border-gray-700">
+              <div className="relative">
+                <img 
+                  src={product.image} 
+                  alt={product.name} 
+                  className="w-full h-48 object-cover"
+                />
+                {product.isNew && (
+                  <Badge className="absolute top-2 right-2 bg-emerald-500 hover:bg-emerald-600">New</Badge>
+                )}
+                {product.isSale && (
+                  <Badge className="absolute top-2 right-2 bg-rose-500 hover:bg-rose-600">Sale</Badge>
+                )}
+              </div>
               <div className="p-4">
-                <h3 className="font-medium text-lg mb-2">{product.name}</h3>
-                <p className="text-gray-600 mb-3">{product.unit}</p>
+                <h3 className="font-medium text-lg mb-2 text-gray-800 dark:text-gray-100">{product.name}</h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-3">{product.unit}</p>
                 <div className="flex justify-between items-center">
-                  <span className="font-bold text-primary">${product.price.toFixed(2)}</span>
+                  <span className="font-bold text-emerald-600 dark:text-emerald-400 text-lg">₹{product.price.toFixed(2)}</span>
                   {product.originalPrice && (
-                    <span className="text-sm text-muted-foreground line-through">
-                      ${product.originalPrice.toFixed(2)}
+                    <span className="text-sm text-rose-500 dark:text-rose-400 line-through">
+                      ₹{product.originalPrice.toFixed(2)}
                     </span>
                   )}
                 </div>
                 {quantities[product.id] ? (
                   <div className="flex items-center justify-between mt-2">
-                    <div className="flex items-center border rounded-md">
+                    <div className="flex items-center border rounded-md border-gray-200 dark:border-gray-700">
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="h-8 w-8 rounded-none"
+                        className="h-8 w-8 rounded-none text-gray-600 hover:text-primary-600 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => handleQuantityChange(product.id, -1)}
                       >
                         <Minus className="h-3 w-3" />
                       </Button>
-                      <span className="w-8 text-center">{quantities[product.id]}</span>
+                      <span className="w-8 text-center font-medium">{quantities[product.id]}</span>
                       <Button 
                         variant="ghost" 
                         size="icon" 
-                        className="h-8 w-8 rounded-none"
+                        className="h-8 w-8 rounded-none text-gray-600 hover:text-primary-600 hover:bg-gray-100 dark:hover:bg-gray-700"
                         onClick={() => handleQuantityChange(product.id, 1)}
                       >
                         <Plus className="h-3 w-3" />
@@ -188,6 +197,7 @@ export function PopularItems() {
                     </div>
                     <Button 
                       size="sm"
+                      className="bg-primary-600 hover:bg-primary-700 text-white"
                       onClick={() => handleAddToCart(product)}
                     >
                       Add to Cart
@@ -196,7 +206,7 @@ export function PopularItems() {
                 ) : (
                   <Button 
                     variant="outline" 
-                    className="w-full mt-2"
+                    className="w-full mt-2 bg-primary border-primary text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900 dark:hover:bg-opacity-20 transition-colors"
                     onClick={() => handleQuantityChange(product.id, 1)}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />

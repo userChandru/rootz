@@ -9,7 +9,7 @@ import { HowItWorks } from '@/components/HowItWorks';
 import { PopularItems } from '@/components/PopularItems';
 import { Footer } from '@/components/Footer';
 import { CartProvider } from '@/contexts/CartContext';
-
+import { ScrollProgress } from '@/components/magicui/scroll-progress';
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -24,6 +24,7 @@ function App() {
           </header> */}
           
           <main className="w-full">
+          <ScrollProgress className="top-[65px]" />
             <Navbar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             <Hero />
             <div className="w-full">

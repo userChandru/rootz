@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ShinyButton } from './magicui/shiny-button';
 import { InteractiveHoverButton } from './magicui/interactive-hover-button';
-import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
 export function Hero() {

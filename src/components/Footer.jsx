@@ -65,19 +65,19 @@ export function Footer() {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-2 text-muted-foreground" />
                 <span className="text-muted-foreground">
-                  123 Grocery Lane, Fresh City, FC 12345
+                  No-6, Dubai Bus Stand, Dubai kurukku santhu, Dubai Main Road, Dubai
                 </span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-2 text-muted-foreground" />
-                <a href="tel:+11234567890" className="text-muted-foreground hover:text-foreground transition-colors">
-                  +1 (123) 456-7890
+                <a href="tel:+919842217170" className="text-muted-foreground hover:text-foreground transition-colors">
+                +91 98422 17170
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-2 text-muted-foreground" />
-                <a href="mailto:support@rootz.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                  support@rootz.com
+                <a href="mailto:sivaji.vaila.jilebi@billa.com" className="text-muted-foreground hover:text-foreground transition-colors">
+                  sivaji.vaila.jilebi@billa.com
                 </a>
               </li>
             </ul>
@@ -89,7 +89,7 @@ export function Footer() {
               Subscribe to our newsletter for the latest updates and offers.
             </p>
             <div className="flex gap-2">
-              <Input placeholder="Your email" className="bg-background" />
+              <Input placeholder="Your email" className="bg-background placeholder:text-gray-500" />
               <Button>Subscribe</Button>
             </div>
           </div>
